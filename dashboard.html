@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SkillRaahi Dashboard</title>
+</head>
+<body>
+  <h1>Welcome to Your SkillRaahi Dashboard</h1>
+  <p>You are now logged in!</p>
+  <button onclick="logout()">Logout</button>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyB09cn2AnDVML4OaWFszNh8t5RmqgwsNEM",
+      authDomain: "skillraahi-6b590.firebaseapp.com",
+      projectId: "skillraahi-6b590",
+      storageBucket: "skillraahi-6b590.firebasestorage.app",
+      messagingSenderId: "1096597143107",
+      appId: "1:1096597143107:web:feb0d8cdbe816817ba5ef6"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    function logout() {
+      auth.signOut().then(() => {
+        alert("You have been logged out.");
+        window.location.href = "login.html";
+      });
+    }
+
+    // Optional: prevent unauthenticated access
+    auth.onAuthStateChanged((user) => {
+      if (!user) {
+        window.location.href = "login.html";
+      }
+    });
+  </script>
+</body>
+</html>
